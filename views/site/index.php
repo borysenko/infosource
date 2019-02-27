@@ -6,11 +6,13 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 
 $this->title = 'My Yii Application';
+$tree = Tree::getRandomAll();
+//print_r($tree);die;
 ?>
 <div class="site-index">
-
-    <?= $this->render('_tree_item', ['tree' => Tree::getRandomAll(), 'parent_id' => Tree::getMinParentID()])?>
-
+    <?php foreach(array_keys($tree) as $parent_id): ?>
+        <?= $this->render('_tree_item', ['tree' => $tree, 'parent_id' => $parent_id])?>
+    <?php endforeach;?>
 </div>
 
 <?php
